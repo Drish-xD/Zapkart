@@ -1,11 +1,15 @@
 import React from 'react'
-import {Typography} from '@mui/material';
+import { Container,Grid , Typography} from '@mui/material';
 const Home = () => {
     return (
         <>
-            <div style={{width: '100%', height: '100vh', background: 'red', paddingTop: '60px'}}>
-                <Typography>Home</Typography>
-            </div>
+        <Container maxWidth="sm">
+            <Grid  container justifyContent="center" alignItems="center" sx={{ height: '100vh', backgroundImage: 'url("../../assets/bg.jpg")' }}>
+                <Typography color="inherit" >
+                    Home
+                </Typography>
+            </Grid>
+        </Container>
         </>
     )
 }

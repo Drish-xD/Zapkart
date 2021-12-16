@@ -1,13 +1,23 @@
 import React from 'react'
-import { Typography } from '@mui/material'
+import { Toolbar, Typography, AppBar, IconButton, Badge } from '@mui/material'
+import LocalMallRoundedIcon from '@mui/icons-material/LocalMallRounded';
 
 const Navbar = () => {
     return (
-        <div>
-            <div style={{backgroundColor: "#000", color: '#fff', width: '100%', height: '60px', position: 'fixed'}}>
-                <Typography>Navbar</Typography>
-            </div>
-        </div>
+        <>
+        <AppBar position="fixed" color='secondary'>
+            <Toolbar>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                Navbar
+            </Typography>
+            <IconButton edge="end" color="inherit" aria-label="Cart">
+                <Badge badgeContent={4} color="primary">
+                    <LocalMallRoundedIcon  />
+                </Badge>
+            </IconButton>
+            </Toolbar>
+        </AppBar>
+        </>
     )
 }
 
