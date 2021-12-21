@@ -1,15 +1,15 @@
 import React from 'react'
-import { Container,Grid , Typography} from '@mui/material';
+import { Grid , Typography} from '@mui/material';
 const Home = () => {
     return (
         <>
-        <Container maxWidth="sm">
-            <Grid  container justifyContent="center" alignItems="center" sx={{ height: '100vh', backgroundImage: 'url("../../assets/bg.jpg")' }}>
-                <Typography color="inherit" >
+        <div style={{ backgroundImage: `url(${require('../../assets/bg.jpg')})`, backgroundSize: `cover`}}>
+            <Grid  container justifyContent="center" alignItems="center" sx={{ height: '100vh' }}>
+                <Typography color="white" >
                     Home
                 </Typography>
             </Grid>
-        </Container>
+        </div>
         </>
     )
 }
