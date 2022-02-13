@@ -1,10 +1,10 @@
 # React Ecommerce WebApp
-Ecommerce Website created with javascript library i.e. [React](https://reactjs.org/). And backend using [Commerce.js.](https://commercejs.com/)
 
-# Screenshot 
+Ecommerce Website created with javascript library i.e. [React](https://reactjs.org/) and Material Ui. And backend using [Commerce.js.](https://commercejs.com/)
+
+# Screenshot
 
 ![Screenshot](link_here "Screenshot")
-
 
 ---
 
