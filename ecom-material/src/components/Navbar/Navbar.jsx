@@ -1,24 +1,25 @@
-import React from 'react'
-import { Toolbar, Typography, AppBar, IconButton, Badge } from '@mui/material'
-import LocalMallRoundedIcon from '@mui/icons-material/LocalMallRounded';
+import React from "react";
+import { Toolbar, AppBar, IconButton, Badge } from "@mui/material";
+import LocalMallRoundedIcon from "@mui/icons-material/LocalMallRounded";
+import AppleIcon from "@mui/icons-material/Apple";
 
-const Navbar = () => {
-    return (
-        <>
-        <AppBar position="fixed" color='secondary'>
-            <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                Navbar
-            </Typography>
-            <IconButton edge="end" color="inherit" aria-label="Cart">
-                <Badge badgeContent={4} color="primary">
-                    <LocalMallRoundedIcon  />
-                </Badge>
-            </IconButton>
-            </Toolbar>
-        </AppBar>
-        </>
-    )
-}
+const Navbar = ({ totalitems }) => {
+  return (
+    <>
+      <AppBar position="fixed" color="inherit">
+        <Toolbar sx={{ justifyContent: "space-between" }}>
+          <IconButton color="inherit" aria-label="Apple">
+            <AppleIcon fontSize="large" />
+          </IconButton>
+          <IconButton color="inherit" aria-label="Cart">
+            <Badge badgeContent={totalitems} color="primary">
+              <LocalMallRoundedIcon />
+            </Badge>
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+    </>
+  );
+};
 
-export default Navbar
+export default Navbar;

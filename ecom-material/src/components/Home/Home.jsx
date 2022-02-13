@@ -1,17 +1,38 @@
-import React from 'react'
-import { Grid , Typography} from '@mui/material';
-const Home = () => {
-    return (
-        <>
-        <div style={{ backgroundImage: `url(${require('../../assets/bg.jpg')})`, backgroundSize: `cover`}}>
-            <Grid  container justifyContent="center" alignItems="center" sx={{ height: '100vh' }}>
-                <Typography color="white" >
-                    Home
-                </Typography>
-            </Grid>
-        </div>
-        </>
-    )
-}
+import React from "react";
+import { Grid, Typography } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 
-export default Home
+const useStyles = makeStyles({
+  bgimage: {
+    display: "block",
+    margin: "1rem auto",
+    objectFit: "contain",
+    width: "100%",
+  },
+});
+
+const Home = () => {
+  const classes = useStyles();
+
+  return (
+    <>
+      <div>
+        <Grid container justifyContent="center" alignContent="space-around" sx={{ aspectRatio: "18/9", marginTop: "60px" }}>
+          <Grid item xs={12} textAlign="center">
+            <Typography variant="h1" component="h1" fontWeight="800">
+              Apple Store
+            </Typography>
+            <Typography variant="h4">
+              The best experiences. <br /> Only on Apple.
+            </Typography>
+          </Grid>
+          <Grid item xs={11}>
+            <img src="./images/bg.jpg" alt="Home" className={classes.bgimage} />
+          </Grid>
+        </Grid>
+      </div>
+    </>
+  );
+};
+
+export default Home;

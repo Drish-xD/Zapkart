@@ -1,11 +1,32 @@
-import React from 'react'
+import React from "react";
+import { Card, CardActionArea, CardContent, CardMedia, Typography, IconButton, Divider } from "@mui/material";
+import { AddShoppingCart } from "@mui/icons-material";
 
-const Product = () => {
-    return (
-        <div>
-            Product
-        </div>
-    )
-}
+import useStyles from "./styles";
 
-export default Product
+const Product = ({ product, onAddToCart }) => {
+  const classes = useStyles();
+
+  return (
+    <Card variant="outlined" className={classes.root}>
+      <CardActionArea>
+        <CardMedia component="img" image={product.image.url} alt={product.name} className={classes.image} />
+        <Divider />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {product.name}
+          </Typography>
+          <Typography variant="body2" color="text.secondary" dangerouslySetInnerHTML={{ __html: product.description }} />
+        </CardContent>
+      </CardActionArea>
+      <div className={classes.content}>
+        <Typography variant="h5">{product.price.formatted_with_symbol}</Typography>
+        <IconButton aria-label="add to shopping cart" onClick={() => onAddToCart(product.id, 1)}>
+          <AddShoppingCart />
+        </IconButton>
+      </div>
+    </Card>
+  );
+};
+
+export default Product;
