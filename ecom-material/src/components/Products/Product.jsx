@@ -3,13 +3,13 @@ import { Card, CardActionArea, CardContent, CardMedia, Typography, IconButton, D
 import { AddShoppingCart } from "@mui/icons-material";
 
 import useStyles from "./styles";
+import { Link } from "react-router-dom";
 
 const Product = ({ product, onAddToCart }) => {
   const classes = useStyles();
-
   return (
     <Card variant="outlined" className={classes.root}>
-      <CardActionArea>
+      <CardActionArea LinkComponent={Link} to={`/product/${product.id}`}>
         <CardMedia component="img" image={product.image.url} alt={product.name} className={classes.image} />
         <Divider />
         <CardContent>

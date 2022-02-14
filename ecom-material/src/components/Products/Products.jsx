@@ -1,5 +1,5 @@
 import React from "react";
-import Product from "./Product/Product";
+import Product from "./Product";
 import { Box, Grid, Typography, Link } from "@mui/material";
 import { NavLink } from "react-router-dom";
 

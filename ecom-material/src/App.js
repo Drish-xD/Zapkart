@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Navbar, Home, Products, Cart, Footer } from "./components/index";
+import { Navbar, Home, Products, Cart, Footer, ProductDetails } from "./components/index";
 import { createTheme, ThemeProvider, responsiveFontSizes } from "@mui/material";
 import { commerce } from "./lib/commerce";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -47,6 +47,7 @@ const App = () => {
           />
           <Route element={<Cart cart={cart} />} path="/cart" />
           <Route element={<Products products={products} onAddToCart={hangleAddCart} />} path="/products" />
+          <Route element={<ProductDetails products={products} onAddToCart={hangleAddCart} />} path="/product/:id" />
         </Routes>
       </Router>
       <Footer />

@@ -1,13 +1,21 @@
-import { Alert, Container, Divider, Grid, Paper, Typography } from "@mui/material";
+import { Alert, Button, CircularProgress, Container, Divider, Grid, Paper, Typography } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
 import SideBar from "./SideBar";
 
 const Cart = ({ cart }) => {
-  const isEmpty = !cart.line_items;
+  const isEmpty = !cart.total_items;
 
   const EmptyCart = () => {
-    return <Alert severity="error">You have no items in your shopping cart, start adding some!</Alert>;
+    return (
+      <>
+        <Alert severity="error">You have no items in your shopping cart, start adding some!</Alert>
+        <Button LinkComponent={Link} to="/" variant="contained" color="warning" disableElevation sx={{ mt: 3 }}>
+          Go Back
+        </Button>
+      </>
+    );
   };
 
   const FilledCart = () => {
@@ -22,6 +30,14 @@ const Cart = ({ cart }) => {
     );
   };
 
+  if (!cart.line_items) {
+    return (
+      <Container sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", flexDirection: "column" }}>
+        <CircularProgress color="inherit" />
+        <Typography variant="h5">Loading...</Typography>
+      </Container>
+    );
+  }
   return (
     <Container>
       <Typography variant="h3" component="h3" marginTop="70px" marginBottom="20px" textAlign="center">
@@ -33,7 +49,7 @@ const Cart = ({ cart }) => {
             <Typography variant="h5" component="h5">
               Added Items
             </Typography>
-            <Divider />
+            <Divider style={{ marginBottom: "1rem" }} />
             {isEmpty ? <EmptyCart /> : <FilledCart />}
           </Paper>
         </Grid>
