@@ -32,8 +32,8 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Navbar totalitems={cart.total_items} />
       <Router>
+        <Navbar totalitems={cart.total_items} />
         <Routes>
           <Route
             exact

@@ -1,8 +1,7 @@
 import { Button, Divider, List, ListItem, Typography } from "@mui/material";
 import React from "react";
 
-const SideBar = ({ cart }) => {
-  console.log(cart);
+const SideBar = ({ cart, isEmpty }) => {
   return (
     <>
       <List>
@@ -17,7 +16,7 @@ const SideBar = ({ cart }) => {
             Total items:
           </Typography>
           <Typography variant="h5" component="h5">
-            {cart.total_items}
+            {isEmpty ? 0 : cart.total_items}
           </Typography>
         </ListItem>
         <ListItem sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -25,7 +24,7 @@ const SideBar = ({ cart }) => {
             Total Price:
           </Typography>
           <Typography variant="h5" component="h5">
-            {cart.subtotal.formatted_with_symbol}
+            {isEmpty ? 0 : cart.subtotal.formatted_with_symbol}
           </Typography>
         </ListItem>
         <ListItem>

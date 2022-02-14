@@ -39,7 +39,7 @@ const Cart = ({ cart }) => {
         </Grid>
         <Grid item xs={12} md={4}>
           <Paper style={{ padding: "1rem" }} variant="outlined" square>
-            <SideBar cart={cart} />
+            <SideBar cart={cart} isEmpty={isEmpty} />
           </Paper>
         </Grid>
       </Grid>
