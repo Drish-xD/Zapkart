@@ -22,7 +22,7 @@ const ProductDetails = ({ products, onAddToCart }) => {
       <Typography variant="h3" component="h3" marginTop="70px" marginBottom="20px" textAlign="center">
         Product
       </Typography>
-      <Grid container columnSpacing={3}>
+      <Grid container spacing={3}>
         <Grid item xs={12} md={7}>
           <ProductImages productImg={product.assets} />
         </Grid>
