@@ -23,7 +23,7 @@ const Product = ({ product, onAddToCart }) => {
         <Typography variant="h5" py={0.5}>
           {product.price.formatted_with_symbol}
         </Typography>
-        <IconButton aria-label="add to shopping cart" onClick={() => onAddToCart(product.id, 1)}>
+        <IconButton aria-label="add to shopping cart" onClick={() => onAddToCart(product.id, 1, product.variant_groups[0].id, product.variant_groups[0].options[0].id)}>
           <AddShoppingCart />
         </IconButton>
       </div>

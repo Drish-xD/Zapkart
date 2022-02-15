@@ -20,13 +20,13 @@ const App = () => {
     setCart(await commerce.cart.retrieve());
   };
 
-  const handleAddCart = async (productId, quantity) => {
-    const { cart } = await commerce.cart.add(productId, quantity);
+  const handleAddCart = async (productId, quantity, variantId, optionId) => {
+    const { cart } = await commerce.cart.add(productId, quantity, { [variantId]: optionId });
     setCart(cart);
   };
 
-  const handleUpdateQty = async (productId, quantity) => {
-    const { cart } = await commerce.cart.update(productId, { quantity: quantity });
+  const handleUpdateQty = async (productId, quantity, variantId, optionId) => {
+    const { cart } = await commerce.cart.update(productId, { quantity: quantity, [variantId]: optionId });
     setCart(cart);
   };
 
