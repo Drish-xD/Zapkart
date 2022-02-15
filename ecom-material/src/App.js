@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Navbar, Home, Products, Cart, Footer, ProductDetails } from "./components/index";
-import { createTheme, ThemeProvider, responsiveFontSizes } from "@mui/material";
+import { createTheme, ThemeProvider, responsiveFontSizes, Container, Typography, CircularProgress } from "@mui/material";
 import { commerce } from "./lib/commerce";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -43,6 +43,15 @@ const App = () => {
     fetchProducts();
     fetchCart();
   }, []);
+
+  if (!products.length) {
+    return (
+      <Container sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", flexDirection: "column" }}>
+        <CircularProgress color="inherit" />
+        <Typography variant="h5">Loading...</Typography>
+      </Container>
+    );
+  }
 
   return (
     <ThemeProvider theme={theme}>
