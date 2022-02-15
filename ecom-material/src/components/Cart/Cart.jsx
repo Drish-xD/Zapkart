@@ -5,8 +5,6 @@ import CartItem from "./CartItem";
 import SideBar from "./SideBar";
 
 const Cart = ({ cart, onUpdateCartQty, onRemoveItem, onRemoveAll }) => {
-  console.log(cart);
-
   const isEmpty = !cart.total_items;
   const EmptyCart = () => {
     return (
@@ -31,7 +29,7 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveItem, onRemoveAll }) => {
     );
   };
 
-  if (!cart.line_items) {
+  if (!cart.cart && !cart.line_items) {
     return (
       <Container sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", flexDirection: "column" }}>
         <CircularProgress color="inherit" />
