@@ -20,7 +20,9 @@ const Product = ({ product, onAddToCart }) => {
         </CardContent>
       </CardActionArea>
       <div className={classes.content}>
-        <Typography variant="h5">{product.price.formatted_with_symbol}</Typography>
+        <Typography variant="h5" py={0.5}>
+          {product.price.formatted_with_symbol}
+        </Typography>
         <IconButton aria-label="add to shopping cart" onClick={() => onAddToCart(product.id, 1)}>
           <AddShoppingCart />
         </IconButton>

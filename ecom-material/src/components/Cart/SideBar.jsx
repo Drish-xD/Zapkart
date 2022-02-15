@@ -1,7 +1,7 @@
 import { Button, Divider, List, ListItem, Typography } from "@mui/material";
 import React from "react";
 
-const SideBar = ({ cart, isEmpty }) => {
+const SideBar = ({ cart, isEmpty, onRemoveAll }) => {
   return (
     <>
       <List>
@@ -28,7 +28,10 @@ const SideBar = ({ cart, isEmpty }) => {
           </Typography>
         </ListItem>
         <ListItem>
-          <Button style={{ display: "block", margin: "0 auto" }} color="success" variant="contained">
+          <Button style={{ display: "block", margin: "0 auto" }} color="error" variant="outlined" disableElevation onClick={() => onRemoveAll()}>
+            Empty Cart
+          </Button>
+          <Button style={{ display: "block", margin: "0 auto" }} color="success" variant="contained" disableElevation>
             Checkout
           </Button>
         </ListItem>

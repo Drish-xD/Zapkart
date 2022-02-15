@@ -12,17 +12,31 @@ const App = () => {
   const [cart, setCart] = useState([]);
 
   const fetchProducts = async () => {
-    const res = await commerce.products.list();
-    setProducts(res.data);
+    const { data } = await commerce.products.list();
+    setProducts(data);
   };
 
   const fetchCart = async () => {
     setCart(await commerce.cart.retrieve());
   };
 
-  const hangleAddCart = async (productId, quantity) => {
-    const res = await commerce.cart.add(productId, quantity);
-    setCart(res.cart);
+  const handleAddCart = async (productId, quantity) => {
+    const { cart } = await commerce.cart.add(productId, quantity);
+    setCart(cart);
+  };
+
+  const handleUpdateQty = async (productId, quantity) => {
+    const { cart } = await commerce.cart.update(productId, { quantity: quantity });
+    setCart(cart);
+  };
+
+  const handleRemoveItem = async (productId) => {
+    const { cart } = await commerce.cart.remove(productId);
+    setCart(cart);
+  };
+
+  const deleteCart = async () => {
+    setCart(await commerce.cart.empty());
   };
 
   useEffect(() => {
@@ -40,14 +54,14 @@ const App = () => {
             element={
               <>
                 <Home />
-                <Products products={products} onAddToCart={hangleAddCart} />
+                <Products products={products} onAddToCart={handleAddCart} />
               </>
             }
             path="/"
           />
-          <Route element={<Cart cart={cart} />} path="/cart" />
-          <Route element={<Products products={products} onAddToCart={hangleAddCart} />} path="/products" />
-          <Route element={<ProductDetails products={products} onAddToCart={hangleAddCart} />} path="/product/:id" />
+          <Route element={<Cart cart={cart} onUpdateCartQty={handleUpdateQty} onRemoveItem={handleRemoveItem} onRemoveAll={deleteCart} />} path="/cart" />
+          <Route element={<Products products={products} onAddToCart={handleAddCart} />} path="/products" />
+          <Route element={<ProductDetails products={products} onAddToCart={handleAddCart} />} path="/product/:id" />
         </Routes>
       </Router>
       <Footer />

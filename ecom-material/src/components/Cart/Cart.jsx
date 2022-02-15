@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
 import SideBar from "./SideBar";
 
-const Cart = ({ cart }) => {
-  const isEmpty = !cart.total_items;
+const Cart = ({ cart, onUpdateCartQty, onRemoveItem, onRemoveAll }) => {
+  console.log(cart);
 
+  const isEmpty = !cart.total_items;
   const EmptyCart = () => {
     return (
       <>
@@ -23,7 +24,7 @@ const Cart = ({ cart }) => {
       <Grid container rowSpacing={3}>
         {cart.line_items.map((item) => (
           <Grid item key={item.id} sx={{ width: "100%" }}>
-            <CartItem item={item} />
+            <CartItem item={item} onUpdateCartQty={onUpdateCartQty} onRemoveItem={onRemoveItem} />
           </Grid>
         ))}
       </Grid>
@@ -55,7 +56,7 @@ const Cart = ({ cart }) => {
         </Grid>
         <Grid item xs={12} md={4}>
           <Paper style={{ padding: "1rem" }} variant="outlined" square>
-            <SideBar cart={cart} isEmpty={isEmpty} />
+            <SideBar cart={cart} isEmpty={isEmpty} onRemoveAll={onRemoveAll} />
           </Paper>
         </Grid>
       </Grid>
