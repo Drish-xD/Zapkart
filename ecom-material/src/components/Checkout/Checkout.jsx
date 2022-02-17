@@ -6,6 +6,7 @@ import {
   StepLabel,
   Stepper,
   Typography,
+  Button,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import AddressFrom from "./AddressFrom";
@@ -13,10 +14,12 @@ import PaymentForm from "./PaymentForm";
 import Confirmation from "./Confirmation";
 import { commerce } from "../../lib/commerce";
 import { Box } from "@mui/system";
+import { useNavigate } from "react-router-dom";
 
 const steps = ["Shipping Address", "Payment Details"];
 
 const Checkout = ({ cart }) => {
+  const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(0);
   const [checkOutToken, setCheckOutToken] = useState(null);
   const [shippingData, setShippingData] = useState({
@@ -89,23 +92,44 @@ const Checkout = ({ cart }) => {
         >
           Checkout
         </Typography>
-        <Stepper activeStep={activeStep} alternativeLabel>
-          {steps.map((step) => (
-            <Step key={step}>
-              <StepLabel>{step}</StepLabel>
-            </Step>
-          ))}
-        </Stepper>
-        {activeStep === steps.length ? (
-          <Confirmation />
-        ) : !checkOutToken ? (
-          <Box
-            sx={{ display: "grid", placeItems: "center", minHeight: "400px" }}
-          >
-            <CircularProgress />
-          </Box>
+        {!cart.total_items ? (
+          <>
+            <Typography variant="h6" gutterBottom>
+              Your Cart is Empty
+            </Typography>
+            <Button
+              variant="contained"
+              disableElevation
+              onClick={(e) => navigate("/")}
+            >
+              Go BAck
+            </Button>
+          </>
         ) : (
-          <Form />
+          <>
+            <Stepper activeStep={activeStep} alternativeLabel>
+              {steps.map((step) => (
+                <Step key={step}>
+                  <StepLabel>{step}</StepLabel>
+                </Step>
+              ))}
+            </Stepper>
+            {activeStep === steps.length ? (
+              <Confirmation />
+            ) : !checkOutToken ? (
+              <Box
+                sx={{
+                  display: "grid",
+                  placeItems: "center",
+                  minHeight: "400px",
+                }}
+              >
+                <CircularProgress />
+              </Box>
+            ) : (
+              <Form />
+            )}
+          </>
         )}
       </Paper>
     </Container>
