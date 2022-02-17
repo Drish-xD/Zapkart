@@ -1,4 +1,11 @@
-import { FormControl, FormHelperText, Grid, InputLabel, MenuItem, Select } from "@mui/material";
+import {
+  FormControl,
+  FormHelperText,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@mui/material";
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 
@@ -23,7 +30,9 @@ const FormInput = ({ name, label, options }) => {
                   </MenuItem>
                 ))}
               </Select>
-              <FormHelperText error={!!error}>{error ? error.message : null}</FormHelperText>
+              <FormHelperText error={!!error}>
+                {error ? error.message : null}
+              </FormHelperText>
             </>
           )}
         />

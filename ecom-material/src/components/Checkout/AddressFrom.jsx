@@ -12,16 +12,28 @@ const AddressFrom = ({ checkOutToken, next, shippingData }) => {
   const [shippingCountries, setshippingCountries] = useState([]);
   const [shippingStates, setShippingStates] = useState([]);
 
-  const Countries = Object.entries(shippingCountries).map(([code, name]) => ({ value: code, label: name }));
-  const States = Object.entries(shippingStates).map(([code, name]) => ({ value: code, label: name }));
+  const Countries = Object.entries(shippingCountries).map(([code, name]) => ({
+    value: code,
+    label: name,
+  }));
+  const States = Object.entries(shippingStates).map(([code, name]) => ({
+    value: code,
+    label: name,
+  }));
 
   const fetchShippingCountries = async (checkoutTokenId) => {
-    const { countries } = await commerce.services.localeListShippingCountries(checkoutTokenId);
+    const { countries } = await commerce.services.localeListShippingCountries(
+      checkoutTokenId
+    );
     setshippingCountries(countries);
   };
 
   const fetchShippingStates = async (checkoutTokenId, countryCode) => {
-    const { subdivisions } = await commerce.services.localeListShippingSubdivisions(checkoutTokenId, countryCode);
+    const { subdivisions } =
+      await commerce.services.localeListShippingSubdivisions(
+        checkoutTokenId,
+        countryCode
+      );
     setShippingStates(subdivisions);
   };
 
@@ -47,22 +59,48 @@ const AddressFrom = ({ checkOutToken, next, shippingData }) => {
               name="email"
               label="Email"
               inputProps={{
-                pattern: "[-a-zA-Z0-9~!$%^&amp;*_=+}{'?]+(.[-a-zA-Z0-9~!$%^&amp;*_=+}{'?]+)*@([a-zA-Z0-9_][-a-zA-Z0-9_]*(.[-a-zA-Z0-9_]+)*.([cC][oO][mM]))(:[0-9]{1,5})?",
+                pattern:
+                  "[-a-zA-Z0-9~!$%^&amp;*_=+}{'?]+(.[-a-zA-Z0-9~!$%^&amp;*_=+}{'?]+)*@([a-zA-Z0-9_][-a-zA-Z0-9_]*(.[-a-zA-Z0-9_]+)*.([cC][oO][mM]))(:[0-9]{1,5})?",
               }}
             />
-            <FormInput name="phone" label="Phone No" inputProps={{ inputMode: "numeric", pattern: "[6-9][0-9]{9}" }} />
+            <FormInput
+              name="phone"
+              label="Phone No"
+              inputProps={{ inputMode: "numeric", pattern: "[6-9][0-9]{9}" }}
+            />
             <FormInput name="address" label="Address" size={12} />
             <FormInput name="city" label="City" />
-            <FormInput name="zip" label="Zip / Postal Code" inputProps={{ inputMode: "numeric", pattern: "[0-9]{6}" }} />
+            <FormInput
+              name="zip"
+              label="Zip / Postal Code"
+              inputProps={{ inputMode: "numeric", pattern: "[0-9]{6}" }}
+            />
 
             <FormSelector name="state" label="State" options={States} />
             <FormSelector name="country" label="Country" options={Countries} />
           </Grid>
-          <div style={{ display: "flex", justifyContent: "space-between", marginTop: "2rem" }}>
-            <Button LinkComponent={Link} to="/cart" color="error" variant="outlined" disableElevation>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginTop: "2rem",
+            }}
+          >
+            <Button
+              LinkComponent={Link}
+              to="/cart"
+              color="error"
+              variant="outlined"
+              disableElevation
+            >
               Cancel
             </Button>
-            <Button type="submit" color="success" variant="contained" disableElevation>
+            <Button
+              type="submit"
+              color="success"
+              variant="contained"
+              disableElevation
+            >
               Next
             </Button>
           </div>
