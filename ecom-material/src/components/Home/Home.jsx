@@ -17,7 +17,12 @@ const Home = () => {
   return (
     <>
       <div>
-        <Grid container justifyContent="center" alignContent="space-around" sx={{ aspectRatio: "18/9", marginTop: "60px" }}>
+        <Grid
+          container
+          justifyContent="center"
+          alignContent="space-around"
+          sx={{ aspectRatio: "18/9", marginTop: "60px" }}
+        >
           <Grid item xs={12} textAlign="center">
             <Typography variant="h1" component="h1" fontWeight="800">
               Apple Store

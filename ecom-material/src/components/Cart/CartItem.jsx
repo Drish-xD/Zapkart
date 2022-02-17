@@ -6,24 +6,67 @@ import { Link } from "react-router-dom";
 const CartItem = ({ item, onUpdateCartQty, onRemoveItem }) => {
   return (
     <div style={{ display: "flex", justifyContent: "space-between" }}>
-      <Card sx={{ display: "flex", flexGrow: "1", justifyContent: "space-between", alignItems: "center", flexDirection: { xs: "column", md: "row" } }}>
-        <div style={{ display: "flex", alignItems: "center", color: "#000", textDecoration: "none", flexGrow: 1 }}>
-          <CardMedia component="img" sx={{ width: 80 }} image={item.image.url} alt={item.name} />
-          <Typography component={Link} to={`/product/${item.product_id}`} variant="h5" sx={{ color: "inherit", textDecoration: "none" }}>
+      <Card
+        sx={{
+          display: "flex",
+          flexGrow: "1",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexDirection: { xs: "column", md: "row" },
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            color: "#000",
+            textDecoration: "none",
+            flexGrow: 1,
+          }}
+        >
+          <CardMedia
+            component="img"
+            sx={{ width: 80 }}
+            image={item.image.url}
+            alt={item.name}
+          />
+          <Typography
+            component={Link}
+            to={`/product/${item.product_id}`}
+            variant="h5"
+            sx={{ color: "inherit", textDecoration: "none" }}
+          >
             {item.name}
           </Typography>
           <div style={{ margin: "0 1rem" }}>
-            <Circle sx={{ color: `#${item.selected_options[0].option_name}`, border: "1.5px solid #000", borderRadius: "50%" }} />
+            <Circle
+              sx={{
+                color: `#${item.selected_options[0].option_name}`,
+                border: "1.5px solid #000",
+                borderRadius: "50%",
+              }}
+            />
           </div>
         </div>
         <div style={{ display: "flex", alignItems: "center" }}>
-          <IconButton aria-label="Decrease Quantity" onClick={() => onUpdateCartQty(item.id, item.quantity - 1)}>
+          <IconButton
+            aria-label="Decrease Quantity"
+            onClick={() => onUpdateCartQty(item.id, item.quantity - 1)}
+          >
             <RemoveCircle />
           </IconButton>
-          <Typography variant="subtitle1" color="text.secondary" component="div" mx={1}>
+          <Typography
+            variant="subtitle1"
+            color="text.secondary"
+            component="div"
+            mx={1}
+          >
             {item.quantity}
           </Typography>
-          <IconButton aria-label="Increase Quantity" onClick={() => onUpdateCartQty(item.id, item.quantity + 1)}>
+          <IconButton
+            aria-label="Increase Quantity"
+            onClick={() => onUpdateCartQty(item.id, item.quantity + 1)}
+          >
             <AddCircle />
           </IconButton>
         </div>
@@ -32,7 +75,10 @@ const CartItem = ({ item, onUpdateCartQty, onRemoveItem }) => {
         </Typography>
       </Card>
       <Box sx={{ display: "block", marginY: "auto", p: 1 }}>
-        <IconButton aria-label="Remove from Cart" onClick={() => onRemoveItem(item.id)}>
+        <IconButton
+          aria-label="Remove from Cart"
+          onClick={() => onRemoveItem(item.id)}
+        >
           <Cancel color="error" />
         </IconButton>
       </Box>

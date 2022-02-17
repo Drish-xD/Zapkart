@@ -10,11 +10,21 @@ const Navbar = ({ totalitems }) => {
     <>
       <AppBar position="fixed" color="inherit">
         <Toolbar sx={{ justifyContent: "space-between" }}>
-          <IconButton LinkComponent={NavLink} to="/" color="inherit" aria-label="Apple">
+          <IconButton
+            LinkComponent={NavLink}
+            to="/"
+            color="inherit"
+            aria-label="Apple"
+          >
             <AppleIcon fontSize="large" />
           </IconButton>
           {pathname !== "/cart" && (
-            <IconButton LinkComponent={NavLink} to="/cart" color="inherit" aria-label="Cart">
+            <IconButton
+              LinkComponent={NavLink}
+              to="/cart"
+              color="inherit"
+              aria-label="Cart"
+            >
               <Badge badgeContent={totalitems} color="primary">
                 <LocalMallRoundedIcon />
               </Badge>

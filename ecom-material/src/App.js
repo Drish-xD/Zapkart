@@ -1,6 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Navbar, Home, Products, Cart, Footer, ProductDetails, Checkout } from "./components/index";
-import { createTheme, ThemeProvider, responsiveFontSizes, Container, Typography, CircularProgress } from "@mui/material";
+import {
+  Navbar,
+  Home,
+  Products,
+  Cart,
+  Footer,
+  ProductDetails,
+  Checkout,
+} from "./components/index";
+import {
+  createTheme,
+  ThemeProvider,
+  responsiveFontSizes,
+  Container,
+  Typography,
+  CircularProgress,
+} from "@mui/material";
 import { commerce } from "./lib/commerce";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -21,12 +36,17 @@ const App = () => {
   };
 
   const handleAddCart = async (productId, quantity, variantId, optionId) => {
-    const { cart } = await commerce.cart.add(productId, quantity, { [variantId]: optionId });
+    const { cart } = await commerce.cart.add(productId, quantity, {
+      [variantId]: optionId,
+    });
     setCart(cart);
   };
 
   const handleUpdateQty = async (productId, quantity, variantId, optionId) => {
-    const { cart } = await commerce.cart.update(productId, { quantity: quantity, [variantId]: optionId });
+    const { cart } = await commerce.cart.update(productId, {
+      quantity: quantity,
+      [variantId]: optionId,
+    });
     setCart(cart);
   };
 
@@ -46,7 +66,15 @@ const App = () => {
 
   if (!products.length) {
     return (
-      <Container sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", flexDirection: "column" }}>
+      <Container
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          flexDirection: "column",
+        }}
+      >
         <CircularProgress color="inherit" />
         <Typography variant="h5">Loading...</Typography>
       </Container>
@@ -68,9 +96,29 @@ const App = () => {
             }
             path="/"
           />
-          <Route element={<Cart cart={cart} onUpdateCartQty={handleUpdateQty} onRemoveItem={handleRemoveItem} onRemoveAll={deleteCart} />} path="/cart" />
-          <Route element={<Products products={products} onAddToCart={handleAddCart} />} path="/products" />
-          <Route element={<ProductDetails products={products} onAddToCart={handleAddCart} />} path="/product/:id" />
+          <Route
+            element={
+              <Cart
+                cart={cart}
+                onUpdateCartQty={handleUpdateQty}
+                onRemoveItem={handleRemoveItem}
+                onRemoveAll={deleteCart}
+              />
+            }
+            path="/cart"
+          />
+          <Route
+            element={
+              <Products products={products} onAddToCart={handleAddCart} />
+            }
+            path="/products"
+          />
+          <Route
+            element={
+              <ProductDetails products={products} onAddToCart={handleAddCart} />
+            }
+            path="/product/:id"
+          />
           <Route element={<Checkout cart={cart} />} path="/cart/checkout" />
         </Routes>
       </Router>

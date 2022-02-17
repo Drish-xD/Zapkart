@@ -25,14 +25,29 @@ const SideBar = ({ cart, isEmpty, onRemoveAll }) => {
             Total Price:
           </Typography>
           <Typography variant="h5" component="h5">
-            {isEmpty ? 0 : cart.subtotal.formatted_with_symbol}
+            {isEmpty ? "₹0.00" : cart.subtotal.formatted_with_symbol}
           </Typography>
         </ListItem>
         <ListItem>
-          <Button style={{ display: "block", margin: "0 auto" }} color="error" variant="outlined" disableElevation onClick={() => onRemoveAll()}>
+          <Button
+            style={{ display: "block", margin: "0 auto" }}
+            color="error"
+            variant="outlined"
+            disableElevation
+            onClick={() => onRemoveAll()}
+            disabled={isEmpty}
+          >
             Empty Cart
           </Button>
-          <Button LinkComponent={Link} to="/cart/checkout" style={{ display: "block", margin: "0 auto" }} color="success" variant="contained" disableElevation>
+          <Button
+            LinkComponent={Link}
+            to="/cart/checkout"
+            style={{ display: "block", margin: "0 auto" }}
+            color="success"
+            variant="contained"
+            disableElevation
+            disabled={isEmpty}
+          >
             Checkout
           </Button>
         </ListItem>

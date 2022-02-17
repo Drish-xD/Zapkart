@@ -7,7 +7,12 @@ const Products = ({ products, onAddToCart }) => {
   return (
     <Box marginY="70px">
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Link component={NavLink} to="/products" underline="hover" color="text.primary">
+        <Link
+          component={NavLink}
+          to="/products"
+          underline="hover"
+          color="text.primary"
+        >
           <Typography variant="h3" component="h3" marginBottom="20px">
             Products
           </Typography>

@@ -9,7 +9,10 @@ const ProductImages = ({ productImg }) => {
 
   useEffect(() => {
     window.addEventListener("resize", () => setWinWidth(window.innerWidth));
-    return () => window.removeEventListener("resize", () => setWinWidth(window.innerWidth));
+    return () =>
+      window.removeEventListener("resize", () =>
+        setWinWidth(window.innerWidth)
+      );
   });
 
   return (
@@ -20,7 +23,13 @@ const ProductImages = ({ productImg }) => {
             <ImageList cols={winWidth > "900" ? 1 : 4} gap={12} sx={{ my: 0 }}>
               {productImg.map((item) => (
                 <ImageListItem key={item.url} className={classes.img_list}>
-                  <img src={item.url} alt={item.filename} className={classes.imgs} onClick={() => setImage(item.url)} loading="lazy" />
+                  <img
+                    src={item.url}
+                    alt={item.filename}
+                    className={classes.imgs}
+                    onClick={() => setImage(item.url)}
+                    loading="lazy"
+                  />
                 </ImageListItem>
               ))}
             </ImageList>

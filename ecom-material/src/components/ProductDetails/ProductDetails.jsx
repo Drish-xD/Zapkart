@@ -10,7 +10,15 @@ const ProductDetails = ({ products, onAddToCart }) => {
   if (!product) {
     return (
       <>
-        <Container sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", flexDirection: "column" }}>
+        <Container
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+            flexDirection: "column",
+          }}
+        >
           <CircularProgress color="inherit" />
           <Typography variant="h5">Loading...</Typography>
         </Container>
@@ -19,7 +27,13 @@ const ProductDetails = ({ products, onAddToCart }) => {
   }
   return (
     <Container>
-      <Typography variant="h3" component="h3" marginTop="70px" marginBottom="20px" textAlign="center">
+      <Typography
+        variant="h3"
+        component="h3"
+        marginTop="70px"
+        marginBottom="20px"
+        textAlign="center"
+      >
         Product
       </Typography>
       <Grid container spacing={3}>
