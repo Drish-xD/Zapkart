@@ -50,6 +50,7 @@ const Product = ({ product, onAddToCart }) => {
               product.variant_groups[0].options[0].id
             )
           }
+          disabled={!product.inventory.available}
         >
           <AddShoppingCart />
         </IconButton>

@@ -68,6 +68,7 @@ const ProductText = ({ product, onAddToCart }) => {
               selectedVariant.id
             )
           }
+          disabled={!product.inventory.available}
         >
           Add To Cart
         </Button>
