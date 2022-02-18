@@ -6,7 +6,6 @@ import {
   StepLabel,
   Stepper,
   Typography,
-  Button,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import AddressFrom from "./AddressFrom";
@@ -18,50 +17,46 @@ import { useNavigate } from "react-router-dom";
 
 const steps = ["Shipping Address", "Payment Details"];
 
-const Checkout = ({ cart }) => {
+const Checkout = ({ cart, order, handleCaptureCheckout, error, setOrder }) => {
   const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(0);
   const [checkOutToken, setCheckOutToken] = useState(null);
   const [shippingData, setShippingData] = useState({
-    firstname: "Test",
-    lastname: "Test",
-    address: "Test",
-    city: "Test",
+    firstname: "Ramu",
+    lastname: "kaka",
+    address: "123 Fake St",
+    city: "New Delhi",
     country: "IN",
-    email: "abc@xyz.com",
-    phone: "9876543210",
+    email: "john.doe@example.com",
+    phone: "7428730894",
     state: "DL",
-    zip: "123456",
-    cardno: "1234567890123456",
+    zip: "110001",
+    cardno: "4242424242424242",
     expires: "1234",
     cvv: "123",
   });
-  console.log(shippingData);
-
-  const generateToken = async (cartId) => {
-    try {
-      const token = await commerce.checkout.generateToken(cartId, {
-        type: "cart",
-      });
-      setCheckOutToken(token);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   useEffect(() => {
+    const generateToken = async (cartId) => {
+      try {
+        const token = await commerce.checkout.generateToken(cartId, {
+          type: "cart",
+        });
+        setCheckOutToken(token);
+      } catch (error) {
+        setTimeout(() => {
+          navigate("/");
+        }, 5000);
+      }
+    };
     generateToken(cart.id);
   }, [cart.id]);
 
+  const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
   const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
 
-  const nextStep = (data) => {
+  const next = (data) => {
     setShippingData(data);
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-
-  const finalStep = (data) => {
-    setShippingData({ ...shippingData, ...data });
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
@@ -69,15 +64,16 @@ const Checkout = ({ cart }) => {
     activeStep === 0 ? (
       <AddressFrom
         checkOutToken={checkOutToken}
-        next={nextStep}
+        next={next}
         shippingData={shippingData}
       />
     ) : (
       <PaymentForm
         checkOutToken={checkOutToken}
         backStep={backStep}
-        finalStep={finalStep}
+        nextStep={nextStep}
         shippingData={shippingData}
+        handleCaptureCheckout={handleCaptureCheckout}
       />
     );
 
@@ -92,44 +88,28 @@ const Checkout = ({ cart }) => {
         >
           Checkout
         </Typography>
-        {!cart.total_items ? (
-          <>
-            <Typography variant="h6" gutterBottom>
-              Your Cart is Empty
-            </Typography>
-            <Button
-              variant="contained"
-              disableElevation
-              onClick={(e) => navigate("/")}
-            >
-              Go BAck
-            </Button>
-          </>
+
+        <Stepper activeStep={activeStep} alternativeLabel>
+          {steps.map((step) => (
+            <Step key={step}>
+              <StepLabel>{step}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+        {activeStep === steps.length ? (
+          <Confirmation order={order} error={error} setOrder={setOrder} />
+        ) : !checkOutToken ? (
+          <Box
+            sx={{
+              display: "grid",
+              placeItems: "center",
+              minHeight: "400px",
+            }}
+          >
+            <CircularProgress />
+          </Box>
         ) : (
-          <>
-            <Stepper activeStep={activeStep} alternativeLabel>
-              {steps.map((step) => (
-                <Step key={step}>
-                  <StepLabel>{step}</StepLabel>
-                </Step>
-              ))}
-            </Stepper>
-            {activeStep === steps.length ? (
-              <Confirmation />
-            ) : !checkOutToken ? (
-              <Box
-                sx={{
-                  display: "grid",
-                  placeItems: "center",
-                  minHeight: "400px",
-                }}
-              >
-                <CircularProgress />
-              </Box>
-            ) : (
-              <Form />
-            )}
-          </>
+          <Form />
         )}
       </Paper>
     </Container>
