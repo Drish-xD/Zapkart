@@ -70,7 +70,7 @@ const ProductText = ({ product, onAddToCart }) => {
           }
           disabled={!product.inventory.available}
         >
-          Add To Cart
+          {!product.inventory.available ? "Out Of Stock" : "Add To Cart"}
         </Button>
       </Paper>
     </>

@@ -8,7 +8,7 @@ import {
   IconButton,
   Divider,
 } from "@mui/material";
-import { AddShoppingCart } from "@mui/icons-material";
+import { AddShoppingCart, ProductionQuantityLimits } from "@mui/icons-material";
 
 import useStyles from "./styles";
 import { Link } from "react-router-dom";
@@ -52,7 +52,11 @@ const Product = ({ product, onAddToCart }) => {
           }
           disabled={!product.inventory.available}
         >
-          <AddShoppingCart />
+          {!product.inventory.available ? (
+            <ProductionQuantityLimits />
+          ) : (
+            <AddShoppingCart />
+          )}
         </IconButton>
       </div>
     </Card>

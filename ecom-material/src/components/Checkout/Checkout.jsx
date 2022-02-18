@@ -50,6 +50,7 @@ const Checkout = ({ cart, order, handleCaptureCheckout, error, setOrder }) => {
       }
     };
     generateToken(cart.id);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart.id]);
 
   const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
