@@ -4,7 +4,7 @@ Ecommerce Website created with javascript library i.e. [React](https://reactjs.o
 
 # Screenshot
 
-![Screenshot](link_here "Screenshot")
+![Screenshot](https://raw.githubusercontent.com/Drish-xD/ecommerce/master/ecom-material/public/images/Screenshot.png "Screenshot")
 
 ---
 
