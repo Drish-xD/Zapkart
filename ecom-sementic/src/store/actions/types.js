@@ -2,6 +2,7 @@ export const SET_ERROR = "SET_ERROR";
 export const LIST_PRODUCTS = "LIST_PRODUCTS";
 export const RETRIEVE_PRODUCT = "RETRIEVE_PRODUCT";
 export const RETRIEVE_CART = "RETRIEVE_CART";
+export const RETRIEVE_CART_ID = "RETRIEVE_CART_ID";
 export const REFRESH_CART = "REFRESH_CART";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const UPDATE_CART = "UPDATE_CART";

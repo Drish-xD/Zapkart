@@ -3,6 +3,7 @@ import {
   LIST_PRODUCTS,
   RETRIEVE_PRODUCT,
   RETRIEVE_CART,
+  RETRIEVE_CART_ID,
   REFRESH_CART,
   ADD_TO_CART,
   UPDATE_CART,
@@ -14,18 +15,20 @@ import {
   LIST_SHIPPING_COUNTRIES,
   LIST_SHIPPING_SUBDIVISIONS,
 } from "./types";
-import { commerce } from "../lib/commerce";
+import { commerce } from "../../lib/commerce";
 
 export const listProducts = () => async (dispatch) => {
   const res = await commerce.products.list();
   dispatch({
     type: LIST_PRODUCTS,
-    payload: res,
+    payload: res.data,
   });
 };
 
 export const retrieveProduct = (permalink) => async (dispatch) => {
-  const res = commerce.products.retrieve(permalink, { type: "permalink" });
+  const res = await commerce.products.retrieve(permalink, {
+    type: "permalink",
+  });
   dispatch({
     type: RETRIEVE_PRODUCT,
     payload: res,
@@ -40,6 +43,14 @@ export const retrieveCart = () => async (dispatch) => {
   });
 };
 
+export const retrieveCartID = () => async (dispatch) => {
+  const res = await commerce.cart.id();
+  dispatch({
+    type: RETRIEVE_CART_ID,
+    payload: res,
+  });
+};
+
 export const refreshCart = () => async (dispatch) => {
   const res = await commerce.cart.refresh();
   dispatch({
@@ -50,32 +61,32 @@ export const refreshCart = () => async (dispatch) => {
 
 export const addToCart =
   (productId, quantity, variantId, optionId) => async (dispatch) => {
-    const res = commerce.cart.add(productId, quantity, {
+    const res = await commerce.cart.add(productId, quantity, {
       [variantId]: optionId,
     });
     dispatch({
       type: ADD_TO_CART,
-      payload: res,
+      payload: res.cart,
     });
   };
 
 export const updateCart =
   (productId, quantity, variantId, optionId) => async (dispatch) => {
-    const res = commerce.cart.update(productId, {
+    const res = await commerce.cart.update(productId, {
       quantity: quantity,
       [variantId]: optionId,
     });
     dispatch({
       type: UPDATE_CART,
-      payload: res,
+      payload: res.cart,
     });
   };
 
 export const removeFromCart = (productId) => async (dispatch) => {
-  const res = commerce.cart.remove(productId);
+  const res = await commerce.cart.remove(productId);
   dispatch({
     type: REMOVE_FROM_CART,
-    payload: res,
+    payload: res.cart,
   });
 };
 
@@ -91,7 +102,7 @@ export const emptyCart = () => async (dispatch) => {
   const res = await commerce.cart.empty();
   dispatch({
     type: EMPTY_CART,
-    payload: res,
+    payload: res.cart,
   });
 };
 
@@ -118,7 +129,6 @@ export const captureOrder =
         type: CAPTURE_ORDER,
         payload: res,
       });
-      refreshCart();
     } catch (error) {
       dispatch({
         type: SET_ERROR,
@@ -133,7 +143,7 @@ export const listCountries = (checkoutTokenId) => async (dispatch) => {
   );
   dispatch({
     type: LIST_SHIPPING_COUNTRIES,
-    payload: res,
+    payload: res.countries,
   });
 };
 
@@ -144,6 +154,6 @@ export const listSubdivisions = (checkoutTokenId) => async (dispatch) => {
   );
   dispatch({
     type: LIST_SHIPPING_SUBDIVISIONS,
-    payload: res,
+    payload: res.subdivisions,
   });
 };

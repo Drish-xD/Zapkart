@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { connect, useSelector } from "react-redux";
+import { retrieveProduct } from "../store/actions";
 
-const ShowProduct = () => {
-  return (
-    <div>ShowProduct</div>
-  )
-}
+const ShowProduct = ({ retrieveProduct }) => {
+  const product = useSelector(({ Products }) => Products.product);
+  console.log(product);
+  const { permalink } = useParams();
 
-export default ShowProduct
+  useEffect(() => {
+    retrieveProduct(permalink);
+  }, [permalink]);
+
+  return <div>ShowProduct</div>;
+};
+
+export default connect(null, { retrieveProduct })(ShowProduct);

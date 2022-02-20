@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import { connect, useSelector } from "react-redux";
+import { retrieveCart } from "../store/actions";
 
-const Cart = () => {
-  return (
-    <div>Cart</div>
-  )
-}
+const Cart = ({ retrieveCart }) => {
+  const cart = useSelector(({ Cart }) => Cart.cart);
+  console.log(cart);
 
-export default Cart
+  useEffect(() => {
+    retrieveCart();
+  }, []);
+
+  return <div>cart</div>;
+};
+
+export default connect(null, { retrieveCart })(Cart);
