@@ -10,7 +10,7 @@ const ShowProduct = ({ retrieveProduct }) => {
 
   useEffect(() => {
     retrieveProduct(permalink);
-  }, [permalink]);
+  }, [permalink, retrieveProduct]);
 
   return <div>ShowProduct</div>;
 };

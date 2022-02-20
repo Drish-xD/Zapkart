@@ -8,7 +8,8 @@ const Home = ({ listProducts }) => {
 
   useEffect(() => {
     listProducts();
-  }, []);
+  }, [listProducts]);
+
   return <div>Home</div>;
 };
 

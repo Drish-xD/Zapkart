@@ -9,11 +9,11 @@ const Checkout = ({ generateToken, retrieveCartID }) => {
 
   useEffect(() => {
     retrieveCartID();
-  }, []);
+  }, [retrieveCartID]);
 
   useEffect(() => {
     generateToken(cardId);
-  }, [cardId]);
+  }, [cardId, generateToken]);
 
   return <div>Checkout</div>;
 };

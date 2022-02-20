@@ -8,7 +8,7 @@ const Cart = ({ retrieveCart }) => {
 
   useEffect(() => {
     retrieveCart();
-  }, []);
+  }, [retrieveCart]);
 
   return <div>cart</div>;
 };

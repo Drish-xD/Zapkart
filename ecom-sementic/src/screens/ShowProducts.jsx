@@ -8,7 +8,7 @@ const ShowProducts = ({ listProducts }) => {
   
   useEffect(() => {
     listProducts();
-  }, []);
+  }, [listProducts]);
 
   return <div>ShowProducts</div>;
 };
